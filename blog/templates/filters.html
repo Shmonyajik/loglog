@@ -1,0 +1,118 @@
+{%extends 'base.html'%}
+
+{%block content%}
+     <form action ="{%url 'home'%}" method ="post">
+       <div class = "Input">
+          {% csrf_token %}
+          {% for field in form %}
+              {% if field.name != 'Event' and field.name != 'User' and field.name != 'Application' and field.name != 'Computer' and field.name != 'Session' %}
+                  <p><label class="form-label" for="{{ field.id_for_label }}">{{field.label}}: </label>{{ field }}</p>
+              {% endif %}
+          {% endfor %}
+        </div>
+        
+          <div class="multiselect" >
+
+              <div class="selectBox" onclick="showCheckboxes()">
+                <select>
+                  <option>Событие</option>
+                </select>
+                <div class="overSelect"></div>
+              </div>
+              <div id="checkboxes">
+                  {% for choice in form.Event %}
+                  <label for="{{choice.id_for_label}}">
+                      <input type = "checkbox" id = "{{choice.id_for_label}}" name = "Event" value = "{{choice.data.value}}" {% if choice.data.selected %} checked {% endif %}/>
+                      {{choice.data.value}}
+                  </label>
+                  {% endfor %}
+                  <div class="btn btn-primary" id = "addSelect">Выделить все</div>
+                  <div class="btn btn-primary" id = "removeSelect">Снять выделение</div>
+
+              </div>
+          </div>
+          <div class="multiselect" class = "User">
+
+              <div class="selectBox" onclick="showCheckboxes1()">
+                <select>
+                  <option>Пользователь</option>
+                </select>
+                <div class="overSelect"></div>
+              </div>
+              <div id="checkboxes1">
+                  {% for choice in form.User %}
+                  <label for="{{choice.id_for_label}}">
+                      <input type = "checkbox" id = "{{choice.id_for_label}}" name = "User" value = "{{choice.data.value}}" {% if choice.data.selected %} checked {% endif %}/>
+                      {{choice.data.value}}
+                  </label>
+                  {% endfor %}
+                  <div class="btn btn-primary" id = "addSelect1">Выделить все</div>
+                  <div class="btn btn-primary" id = "removeSelect1">Снять выделение</div>
+
+              </div>
+          </div>
+          <div class="multiselect" class = "App">
+
+              <div class="selectBox" onclick="showCheckboxes2()">
+                <select>
+                  <option>Приложение</option>
+                </select>
+                <div class="overSelect"></div>
+              </div>
+              <div id="checkboxes2">
+                  {% for choice in form.Application %}
+                  <label for="{{choice.id_for_label}}">
+                      <input type = "checkbox" id = "{{choice.id_for_label}}" name = "Application" value = "{{choice.data.value}}" {% if choice.data.selected %} checked {% endif %}/>
+                      {{choice.data.value}}
+                  </label>
+                  {% endfor %}
+                  <div class="btn btn-primary" id = "addSelect2">Выделить все</div>
+                  <div class="btn btn-primary" id = "removeSelect2">Снять выделение</div>
+
+              </div>
+          </div>
+          <div class="multiselect" class = "Computer">
+
+              <div class="selectBox" onclick="showCheckboxes3()">
+                <select>
+                  <option>Компьютер</option>
+                </select>
+                <div class="overSelect"></div>
+              </div>
+              <div id="checkboxes3">
+                  {% for choice in form.Computer %}
+                  <label for="{{choice.id_for_label}}">
+                      <input type = "checkbox" id = "{{choice.id_for_label}}" name = "Computer" value = "{{choice.data.value}}" {% if choice.data.selected %} checked {% endif %}/>
+                      {{choice.data.value}}
+                  </label>
+                  {% endfor %}
+                  <div class="btn btn-primary" id = "addSelect3">Выделить все</div>
+                  <div class="btn btn-primary" id = "removeSelect3">Снять выделение</div>
+
+              </div>
+          </div>
+          <div class="multiselect" class = "Session">
+
+              <div class="selectBox" onclick="showCheckboxes4()">
+                <select>
+                  <option>Сеанс</option>
+                </select>
+                <div class="overSelect"></div>
+              </div>
+              <div id="checkboxes4">
+                  {% for choice in form.Session %}
+                  <label for="{{choice.id_for_label}}">
+                      <input type = "checkbox" id = "{{choice.id_for_label}}" name = "Session" value = "{{choice.data.value}}" {% if choice.data.selected %} checked {% endif %}/>
+                      {{choice.data.value}}
+                  </label>
+                  {% endfor %}
+                  <div class="btn btn-primary" id = "addSelect4">Выделить все</div>
+                  <div class="btn btn-primary" id = "removeSelect4">Снять выделение</div>
+
+              </div>
+          </div>
+     
+        <input type="submit"  value="Применить" class = "button_submit">
+
+    </form>
+{%endblock%}
